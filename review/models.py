@@ -18,8 +18,8 @@ class Review(models.Model):
         EXCEPTIONAL = (5,"5 - EXCEPTIONAL")
 
     title = models.CharField(max_length=200)
-    body = models.TextField()
     status = models.IntegerField(choices=status.choices, default=status.DRAFT)
+    body = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.IntegerField(choices=RatingChoices.choices, default=RatingChoices.GOOD)
     
@@ -27,4 +27,5 @@ class Review(models.Model):
     created_ad = models.DateTimeField(auto_now_add=True)
     updated_ad = models.DateTimeField(auto_now=True)
     
-
+    def __str__(self) -> str:
+        return f"{self.title} - Status: {self.status} - Rating: {self.rating}"
