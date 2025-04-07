@@ -17,7 +17,7 @@ class Review(models.Model):
 
     class RatingChoices(models.IntegerChoices):
         BAD = (0,"0 - BAD")
-        POOR = (1,"1 = POOR")
+        POOR = (1,"1 - POOR")
         FAIR = (2,"2 - FAIR")
         GOOD = (3,"3 - GOOD")
         EXCELLENT = (4,"4 - EXCELLENT")
@@ -44,6 +44,15 @@ class Review(models.Model):
                        args=[self.published_ad.year, self.published_ad.month,
                                    self.published_ad.day,self.slugfied_title]) 
 
-    
     def __str__(self) -> str:
         return f"{self.title} - Status: {self.status} - Rating: {self.rating}"
+    
+class Comment(models.Model):
+    review = models.ForeignKey(Review, on_delete=models.CASCADE)
+    user_name = models.CharField(max_length=200)
+    user_email = models.EmailField()
+    message = models.TextField(max_length=400)
+    active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+

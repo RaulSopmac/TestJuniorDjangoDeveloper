@@ -1,0 +1,22 @@
+<nav aria-label="Navegação de página film review">
+    <ul class="pagination">
+      <li class="page-item">
+        {% if page.has_previous %}
+        <a class="page-link" href="?page={{ page.previous_page_number}}" aria-label="Anterior">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Anterior</span>
+        {% endif %}
+        </a>
+      </li>
+      <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+      <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+      <li class="page-item">
+        {% if page.has_next %}
+        <a class="page-link" href="?page={{ page.next_page_number}}" aria-label="Próximo">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Próximo</span>
+        {% endif %}
+        </a>
+      </li>
+    </ul>
+  </nav>
